@@ -1,0 +1,5 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Вход администратора</title><link rel="stylesheet" href="/static/style.css"></head>
+<body><main class="card narrow"><div class="eyebrow">PRIVATE AREA</div><h1>Вход в админку</h1>
+{% with messages = get_flashed_messages() %}{% for m in messages %}<p class="error">{{m}}</p>{% endfor %}{% endwith %}
+<form method="post"><label>Пароль администратора<input type="password" name="password" required autocomplete="current-password"></label><button type="submit">Войти</button></form>
+</main></body></html>

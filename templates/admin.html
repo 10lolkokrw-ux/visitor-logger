@@ -1,0 +1,10 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Visitor Logger — Dashboard</title><link rel="stylesheet" href="/static/style.css"></head>
+<body><main class="wrap"><header class="top"><div><div class="eyebrow">CONTROL CENTER</div><h1>Visitor Logger</h1><p class="muted">Журнал добровольно согласившихся посетителей</p></div>
+<form method="post" action="/admin/logout"><button class="secondary">Выйти</button></form></header>
+{% with messages = get_flashed_messages() %}{% for m in messages %}<p class="success">{{m}}</p>{% endfor %}{% endwith %}
+<section class="stats"><div class="stat"><span>Всего записей</span><strong>{{total}}</strong></div><div class="stat"><span>Хранение</span><strong>{{retention}} дней</strong></div><div class="stat"><span>Показано</span><strong>{{rows|length}}</strong></div></section>
+<section class="panel"><div class="panelhead"><h2>Последние посещения</h2><form method="post" action="/admin/clear" onsubmit="return confirm('Точно очистить журнал?')"><button class="danger">Очистить журнал</button></form></div>
+<div class="tablewrap"><table><thead><tr><th>Время (UTC)</th><th>IP-адрес</th><th>Браузер / устройство (User-Agent)</th></tr></thead><tbody>
+{% for row in rows %}<tr><td class="nowrap">{{row.visited_at}}</td><td><code>{{row.ip}}</code></td><td class="ua">{{row.user_agent}}</td></tr>
+{% else %}<tr><td colspan="3" class="empty">Пока нет записей. Посетители должны дать согласие на главной странице.</td></tr>{% endfor %}
+</tbody></table></div></section><p class="foot">IP — персональные данные. Ограничьте доступ к панели и не публикуйте журнал.</p></main></body></html>

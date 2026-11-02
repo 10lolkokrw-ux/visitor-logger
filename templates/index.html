@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Visitor Logger</title><link rel="stylesheet" href="/static/style.css"></head>
+<body><main class="card">
+<div class="eyebrow">VISITOR ANALYTICS</div><h1>Добро пожаловать</h1>
+<p class="muted">На этой странице можно добровольно разрешить запись минимальных технических данных для статистики посещений.</p>
+<div class="notice"><b>Что будет записано:</b><ul><li>IP-адрес, который видит веб-сервер</li><li>Строка браузера (User-Agent)</li><li>Время посещения</li></ul>
+<p>Данные доступны владельцу сайта в закрытой админ-панели и автоматически удаляются через 7 дней. Геолокация и сканирование портов не выполняются.</p></div>
+{% with messages = get_flashed_messages() %}{% for m in messages %}<p class="error">{{m}}</p>{% endfor %}{% endwith %}
+<form method="post" action="/consent">
+<label class="check"><input type="checkbox" name="consent" value="yes" required> Я согласен(на) на запись перечисленных технических данных.</label>
+<button type="submit">Согласиться и продолжить</button></form>
+</main></body></html>
